@@ -1,0 +1,2 @@
+C:\Users\Lee\Documents\Visual Studio 2010\Projects\JezzBall2\JezzBall2\JezzBall2Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2Content\obj\x86\Debug\ResolveAssemblyReference.cache
