@@ -122,6 +122,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Screens\ActionScreen.cs" />
+    <Compile Include="Screens\CreditScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Utility\KeyboardUtility.cs" />
