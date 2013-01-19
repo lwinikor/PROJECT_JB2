@@ -18,6 +18,7 @@ namespace JezzBall2.Screens
         public CreditScreen(Game game, SpriteBatch spriteBatch, SpriteFont font, String[] credits, float textSpeed, int spacing)
             : base(game, spriteBatch)
         {
+            this.font = font;
             this.credits = credits;
             this.textSpeed = textSpeed;
             this.spacing = spacing;

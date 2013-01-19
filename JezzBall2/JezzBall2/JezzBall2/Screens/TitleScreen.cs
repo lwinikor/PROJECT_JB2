@@ -40,7 +40,7 @@ namespace JezzBall2.Screens
             this.pressStartSpriteFont = pressStartSpriteFont;
             this.image = image;
             this.color = color;
-
+            this.imageRectangle = new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height);
             this.setTextPositions();
         }
 

@@ -5,3 +5,5 @@
 *.exe
 *.csproj.*.txt
 *.cache
+*\Debug\*
+*/Debug/*
