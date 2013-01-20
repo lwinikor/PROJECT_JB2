@@ -27,6 +27,7 @@ namespace JezzBall2
         GameScreen activeScreen;
         TitleScreen titleScreen;
         MainMenuScreen mainMenuScreen;
+        CreditScreen creditScreen;
 
         // Keyboard states used to determine key presses
         KeyboardState currentKeyboardState;
@@ -75,6 +76,11 @@ namespace JezzBall2
             this.mainMenuScreen.Hide();
             this.Components.Add(this.mainMenuScreen);
 
+            String[] credits = { "LEE", "JOSH", "NACHO" };
+            this.creditScreen = new CreditScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TitleScreen"), credits, 5, 100, new Color(255,255,255));
+            this.creditScreen.Hide();
+            this.Components.Add(this.creditScreen);
+
             this.activeScreen = this.titleScreen;
             this.activeScreen.Show();
         }
@@ -111,9 +117,7 @@ namespace JezzBall2
             {
                 if (!this.titleScreen.Enabled)
                 {
-                    this.activeScreen.Hide();
-                    this.activeScreen = this.mainMenuScreen;
-                    this.activeScreen.Show();
+                    SwapToScreen(this.mainMenuScreen);
                 }
             }
             else if (this.activeScreen == this.mainMenuScreen)
@@ -124,8 +128,20 @@ namespace JezzBall2
                     {
                         this.Exit();
                     }
+                    else if ((MainMenu)this.mainMenuScreen.SelectedIndex == MainMenu.CREDITS)
+                    {
+                        this.creditScreen.Enabled = true;
+                        SwapToScreen(this.creditScreen);
+                    }
                 }
                 
+            }
+            else if (this.activeScreen == this.creditScreen)
+            {
+                if (!this.creditScreen.Enabled)
+                {
+                    SwapToScreen(this.mainMenuScreen);
+                }
             }
 
             base.Update(gameTime);
@@ -144,6 +160,14 @@ namespace JezzBall2
             base.Draw(gameTime);
 
             this.spriteBatch.End();
+        }
+
+        // Helper functions
+        private void SwapToScreen(GameScreen newScreen)
+        {
+            this.activeScreen.Hide();
+            this.activeScreen = newScreen;
+            this.activeScreen.Show();
         }
     }
 }
