@@ -13,6 +13,7 @@ using ScreenManager;
 using JezzBall2.Screens;
 using JezzBall2.Utility;
 using JezzBall2.Enums;
+using JezzBall2.Stages;
 
 namespace JezzBall2
 {
@@ -28,6 +29,7 @@ namespace JezzBall2
         TitleScreen titleScreen;
         MainMenuScreen mainMenuScreen;
         CreditScreen creditScreen;
+        ActionScreen actionScreen;
 
         // Keyboard states used to determine key presses
         KeyboardState currentKeyboardState;
@@ -77,9 +79,18 @@ namespace JezzBall2
             this.Components.Add(this.mainMenuScreen);
 
             String[] credits = { "LEE", "JOSH", "NACHO" };
-            this.creditScreen = new CreditScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TitleScreen"), credits, 5, 100, new Color(255,255,255));
+            this.creditScreen = new CreditScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TitleScreen"), credits, Color.White);
             this.creditScreen.Hide();
             this.Components.Add(this.creditScreen);
+
+            Texture2D borderTexture = new Texture2D(GraphicsDevice, 1, 1);
+            borderTexture.SetData(new[] { Color.White });
+
+            Stage stage = new Stage(600, 1000, 1, borderTexture, new Vector2(140, 60));
+
+            this.actionScreen = new ActionScreen(this, this.spriteBatch, stage);
+            this.actionScreen.Hide();
+            this.Components.Add(this.actionScreen);
 
             this.activeScreen = this.titleScreen;
             this.activeScreen.Show();
@@ -117,7 +128,7 @@ namespace JezzBall2
             {
                 if (!this.titleScreen.Enabled)
                 {
-                    SwapToScreen(this.mainMenuScreen);
+                    this.SwapToScreen(this.mainMenuScreen);
                 }
             }
             else if (this.activeScreen == this.mainMenuScreen)
@@ -131,7 +142,12 @@ namespace JezzBall2
                     else if ((MainMenu)this.mainMenuScreen.SelectedIndex == MainMenu.CREDITS)
                     {
                         this.creditScreen.Enabled = true;
-                        SwapToScreen(this.creditScreen);
+                        this.SwapToScreen(this.creditScreen);
+                    }
+                    else if ((MainMenu)this.mainMenuScreen.SelectedIndex == MainMenu.SURVIVAL)
+                    {
+                        this.actionScreen.Enabled = true;
+                        this.SwapToScreen(this.actionScreen);
                     }
                 }
                 
@@ -140,8 +156,12 @@ namespace JezzBall2
             {
                 if (!this.creditScreen.Enabled)
                 {
-                    SwapToScreen(this.mainMenuScreen);
+                    this.SwapToScreen(this.mainMenuScreen);
                 }
+            }
+            else if (this.activeScreen == this.actionScreen)
+            {
+                
             }
 
             base.Update(gameTime);

@@ -37,6 +37,15 @@
       <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Fonts\MainMenu.xnb</Output>
       <Time>2013-01-14T23:51:38.257646-05:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\CreditsFont.spritefont</Source>
+      <Name>Fonts\CreditsFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Fonts\CreditsFont.xnb</Output>
+      <Time>2013-01-21T21:21:53.855102-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

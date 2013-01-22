@@ -4,8 +4,9 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using System.Text;
 using Animations;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace JezzBall2.Player
+namespace JezzBall2.Players
 {
     class Player
     {
@@ -20,9 +21,7 @@ namespace JezzBall2.Player
         public int height;
         public float speed;
         public float jumpSpeed;
-
-        public Boolean reverse;
-
+        
         public Player(Animation standingAnimation, Animation runningAnimation, Animation jumpingAnimation, Vector2 position, int width, int height, int health, float speed, float jumpSpeed)
         {
             this.standingAnimation = standingAnimation;
@@ -34,6 +33,14 @@ namespace JezzBall2.Player
             this.health = health;
             this.speed = speed;
             this.jumpSpeed = jumpSpeed;
+        }
+
+        public void update(GameTime gameTime)
+        {
+        }
+
+        public void draw(SpriteBatch spriteBatch)
+        {
         }
     }
 }

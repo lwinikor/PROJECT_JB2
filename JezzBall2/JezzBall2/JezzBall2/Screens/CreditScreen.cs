@@ -5,6 +5,7 @@ using System.Text;
 using ScreenManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using JezzBall2.Constants;
 
 namespace JezzBall2.Screens
 {
@@ -12,18 +13,14 @@ namespace JezzBall2.Screens
     {
         String[] credits;
         List<Vector2> positions;
-        protected float textSpeed;
         protected SpriteFont font;
-        protected int spacing;
         protected Color textColor;
 
-        public CreditScreen(Game game, SpriteBatch spriteBatch, SpriteFont font, String[] credits, float textSpeed, int spacing, Color textColor)
+        public CreditScreen(Game game, SpriteBatch spriteBatch, SpriteFont font, String[] credits, Color textColor)
             : base(game, spriteBatch)
         {
             this.font = font;
             this.credits = credits;
-            this.textSpeed = textSpeed;
-            this.spacing = spacing;
             this.textColor = textColor;
             this.positions = new List<Vector2>();
 
@@ -33,7 +30,7 @@ namespace JezzBall2.Screens
             for(int i=0; i < credits.Length; i++)
             {
                 x = Game.Window.ClientBounds.Width / 2 - font.MeasureString(credits[i]).X / 2;
-                y = Game.Window.ClientBounds.Height + i * (font.MeasureString(credits[i]).Y + spacing);
+                y = Game.Window.ClientBounds.Height + i * (font.MeasureString(credits[i]).Y + CreditsConstants.SPACING);
                 positions.Add(new Vector2(x, y));
             }
         }
@@ -49,7 +46,7 @@ namespace JezzBall2.Screens
                 for(int j=0; j < positions.Count; j++)
                 {
                     x = Game.Window.ClientBounds.Width / 2 - font.MeasureString(credits[j]).X / 2;
-                    y = Game.Window.ClientBounds.Height + j * (font.MeasureString(credits[j]).Y + spacing);
+                    y = Game.Window.ClientBounds.Height + j * (font.MeasureString(credits[j]).Y + CreditsConstants.SPACING);
                     positions[j] = new Vector2(x, y);
                 }
             }
@@ -58,7 +55,7 @@ namespace JezzBall2.Screens
                 for (int i = 0; i < positions.Count; i++)
                 {
                     Vector2 curPos = positions[i];
-                    curPos.Y -= textSpeed;
+                    curPos.Y -= CreditsConstants.TEXTSPEED;
                     positions[i] = curPos;
                 }
             }
