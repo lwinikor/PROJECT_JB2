@@ -6,10 +6,11 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Animations;
+using JezzBall2.Interfaces;
  
 namespace JezzBall2.Balls
 {
-    class Ball
+    class Ball : IMoveable
     {
         private Animation animation;
         private Vector2 position;
@@ -28,6 +29,11 @@ namespace JezzBall2.Balls
             this.height = height;
             this.horizontalVelocity = horizontalVelocity;
             this.verticalVelocity = verticalVelocity;
+        }
+
+        public Vector2 getPosition()
+        {
+            return this.position;
         }
 
         public void update(GameTime gameTime)

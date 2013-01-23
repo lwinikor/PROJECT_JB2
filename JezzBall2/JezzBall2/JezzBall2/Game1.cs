@@ -14,6 +14,7 @@ using JezzBall2.Screens;
 using JezzBall2.Utility;
 using JezzBall2.Enums;
 using JezzBall2.Stages;
+using JezzBall2.Players;
 
 namespace JezzBall2
 {
@@ -87,8 +88,11 @@ namespace JezzBall2
             borderTexture.SetData(new[] { Color.White });
 
             Stage stage = new Stage(600, 1000, 1, borderTexture, new Vector2(140, 60));
+            List<Player> players = new List<Player>();
+//          Animation animation = new Animation()
+//          Player player1 = new Player()
 
-            this.actionScreen = new ActionScreen(this, this.spriteBatch, stage);
+            this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players);
             this.actionScreen.Hide();
             this.Components.Add(this.actionScreen);
 

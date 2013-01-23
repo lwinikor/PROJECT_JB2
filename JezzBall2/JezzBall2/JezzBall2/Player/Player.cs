@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using Animations;
 using Microsoft.Xna.Framework.Graphics;
+using JezzBall2.Interfaces;
 
 namespace JezzBall2.Players
 {
-    class Player
+    class Player : IMoveable
     {
         public Animation standingAnimation;
         public Animation runningAnimation;
@@ -33,6 +34,11 @@ namespace JezzBall2.Players
             this.health = health;
             this.speed = speed;
             this.jumpSpeed = jumpSpeed;
+        }
+
+        public Vector2 getPosition()
+        {
+            return this.position;
         }
 
         public void update(GameTime gameTime)
