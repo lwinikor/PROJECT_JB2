@@ -44,7 +44,6 @@
   <ItemGroup>
     <Folder Include="Music\" />
     <Folder Include="SFX\" />
-    <Folder Include="Textures\Backgrounds\" />
     <Folder Include="Textures\Characters\" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +81,13 @@
       <Name>CreditsFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Backgrounds\backgroundTile.png">
+      <Name>backgroundTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

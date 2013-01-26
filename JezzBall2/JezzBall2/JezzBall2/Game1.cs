@@ -87,7 +87,9 @@ namespace JezzBall2
             Texture2D borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             borderTexture.SetData(new[] { Color.White });
 
-            Stage stage = new Stage(600, 1000, 1, borderTexture, new Vector2(140, 60));
+            Texture2D bgTexture = Content.Load<Texture2D>("Textures/Backgrounds/backgroundTile");
+
+            Stage stage = new Stage(600, 1000, 1, borderTexture, bgTexture, new Vector2(140, 60));
             List<Player> players = new List<Player>();
 //          Animation animation = new Animation()
 //          Player player1 = new Player()
