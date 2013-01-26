@@ -43,6 +43,7 @@ namespace Animations
         // The state of the Animation
         protected bool active;
 
+
         // Determines if the animation will keep playing or deactivate after one run
         protected bool looping;
 

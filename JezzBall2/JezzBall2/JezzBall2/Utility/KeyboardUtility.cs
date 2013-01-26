@@ -8,7 +8,7 @@ namespace JezzBall2.Utility
 {
     static class KeyboardUtility
     {
-        public static bool checkKey(Keys theKey, KeyboardState currentKeyboardState, KeyboardState previousKeyboardState)
+        public static bool checkKeyReleased(Keys theKey, KeyboardState currentKeyboardState, KeyboardState previousKeyboardState)
         {
             return currentKeyboardState.IsKeyUp(theKey) && previousKeyboardState.IsKeyDown(theKey);
         }

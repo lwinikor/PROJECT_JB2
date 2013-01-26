@@ -44,7 +44,6 @@
   <ItemGroup>
     <Folder Include="Music\" />
     <Folder Include="SFX\" />
-    <Folder Include="Textures\Characters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Textures\Balls\ball.png">
@@ -86,6 +85,13 @@
   <ItemGroup>
     <Compile Include="Textures\Backgrounds\backgroundTile.png">
       <Name>backgroundTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Characters\playerTest.png">
+      <Name>playerTest</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

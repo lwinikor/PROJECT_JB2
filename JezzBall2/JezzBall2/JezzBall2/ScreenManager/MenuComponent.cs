@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using JezzBall2.Utility;
 
 
 namespace ScreenManager
@@ -16,6 +17,7 @@ namespace ScreenManager
     {
         protected String[] menuItems;
         protected int selectedIndex;
+        
 
         protected Color normal;
         protected Color hilite;
@@ -29,6 +31,8 @@ namespace ScreenManager
         protected Vector2 position;
 
         protected int spacing;
+
+        public bool SelectionConfirmed = false;
 
         public int SelectedIndex
         {
@@ -70,27 +74,27 @@ namespace ScreenManager
             base.Initialize();
         }
 
-        private Boolean CheckKey(Keys theKey)
-        {
-            return this.currentKeyboardState.IsKeyUp(theKey) && this.previousKeyboardState.IsKeyDown(theKey);
-        }
-
         public override void Update(GameTime gameTime)
         {
             this.currentKeyboardState = Keyboard.GetState();
 
-            if (this.CheckKey(Keys.Down))
+            if (KeyboardUtility.checkKeyReleased(Keys.Down, this.currentKeyboardState, this.previousKeyboardState))
             {
                 this.selectedIndex++;
                 if (this.selectedIndex == this.menuItems.Length)
                     this.selectedIndex = 0;
             }
-            if (this.CheckKey(Keys.Up))
+            if (KeyboardUtility.checkKeyReleased(Keys.Up, this.currentKeyboardState, this.previousKeyboardState))
             {
                 this.selectedIndex--;
                 if (this.selectedIndex < 0)
                     this.selectedIndex = this.menuItems.Length - 1;
             }
+            if (KeyboardUtility.checkKeyReleased(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState))
+            {
+                this.SelectionConfirmed = true;
+            }
+
             base.Update(gameTime);
 
             this.previousKeyboardState = this.currentKeyboardState;

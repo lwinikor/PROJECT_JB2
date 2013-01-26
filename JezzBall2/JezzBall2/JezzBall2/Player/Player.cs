@@ -43,10 +43,13 @@ namespace JezzBall2.Players
 
         public void update(GameTime gameTime)
         {
+            standingAnimation.setPosition(this.position);
+            standingAnimation.update(gameTime);
         }
 
         public void draw(SpriteBatch spriteBatch)
         {
+            this.standingAnimation.draw(spriteBatch);
         }
     }
 }

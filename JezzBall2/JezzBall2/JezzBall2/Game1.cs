@@ -89,10 +89,14 @@ namespace JezzBall2
 
             Texture2D bgTexture = Content.Load<Texture2D>("Textures/Backgrounds/backgroundTile");
 
+            Texture2D playerTexture = Content.Load<Texture2D>("Textures/Characters/playerTest");
+
             Stage stage = new Stage(600, 1000, 1, borderTexture, bgTexture, new Vector2(140, 60));
             List<Player> players = new List<Player>();
-//          Animation animation = new Animation()
-//          Player player1 = new Player()
+            Animation playerAnimation = new Animation();
+            playerAnimation.initialize(playerTexture, Vector2.Zero, 30, 50, 1, 30, Color.White, 1.0f, true);
+            Player player1 = new Player(playerAnimation, playerAnimation, playerAnimation, new Vector2((stage.playableRight - stage.playableLeft) / 2, stage.playableBottom - 50), 30, 50, 100, 10, 10);
+            players.Add(player1);
 
             this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players);
             this.actionScreen.Hide();
@@ -122,7 +126,7 @@ namespace JezzBall2
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || this.currentKeyboardState.IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            // Save the previous state of the keyboard and game pad so we can determinesingle key/button presses
+            // Save the previous state of the keyboard and game pad so we can determine single key/button presses
             this.previousGamePadState = this.currentGamePadState;
             this.previousKeyboardState = this.currentKeyboardState;
 
@@ -139,24 +143,27 @@ namespace JezzBall2
             }
             else if (this.activeScreen == this.mainMenuScreen)
             {
-                if (KeyboardUtility.checkKey(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState))
+                if(this.mainMenuScreen.SelectionConfirmed)
                 {
-                    if ((MainMenu) this.mainMenuScreen.SelectedIndex == MainMenu.EXIT)
+                    this.mainMenuScreen.SelectionConfirmed = false;
+                    switch (this.mainMenuScreen.SelectedIndex)
                     {
-                        this.Exit();
+                        case (int)MainMenu.EXIT:
+                            this.Exit(); 
+                            break;
+                        case (int)MainMenu.CREDITS:
+                            this.creditScreen.Enabled = true;
+                            this.SwapToScreen(this.creditScreen);
+                            break;
+                        case (int)MainMenu.SURVIVAL:
+                            this.actionScreen.Enabled = true;
+                            this.SwapToScreen(this.actionScreen);
+                            break;
+                        default:
+                            //this.Exit();
+                            break;
                     }
-                    else if ((MainMenu)this.mainMenuScreen.SelectedIndex == MainMenu.CREDITS)
-                    {
-                        this.creditScreen.Enabled = true;
-                        this.SwapToScreen(this.creditScreen);
-                    }
-                    else if ((MainMenu)this.mainMenuScreen.SelectedIndex == MainMenu.SURVIVAL)
-                    {
-                        this.actionScreen.Enabled = true;
-                        this.SwapToScreen(this.actionScreen);
-                    }
-                }
-                
+                }  
             }
             else if (this.activeScreen == this.creditScreen)
             {
@@ -167,7 +174,7 @@ namespace JezzBall2
             }
             else if (this.activeScreen == this.actionScreen)
             {
-                
+                //this.actionScreen
             }
 
             base.Update(gameTime);

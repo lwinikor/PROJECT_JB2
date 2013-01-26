@@ -84,7 +84,7 @@ namespace JezzBall2.Screens
             this.previousKeyboardState = this.currentKeyboardState;
             this.currentKeyboardState = Keyboard.GetState();
 
-            if (KeyboardUtility.checkKey(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState))
+            if (KeyboardUtility.checkKeyReleased(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState))
             {
                 this.Enabled = false;
             }

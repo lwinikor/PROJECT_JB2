@@ -23,6 +23,12 @@ namespace JezzBall2.Screens
             set { this.menuComponent.SelectedIndex = value; }
         }
 
+        public bool SelectionConfirmed
+        {
+            get { return this.menuComponent.SelectionConfirmed; }
+            set { this.menuComponent.SelectionConfirmed = value; }
+        }
+
         public MainMenuScreen(Game game, SpriteBatch spriteBatch, SpriteFont spriteFont, Texture2D image, Color color)
             : base(game, spriteBatch)
         {

@@ -19,6 +19,25 @@ namespace JezzBall2.Stages
         protected Texture2D borderTexture;
         protected Texture2D backgroundTexture;
 
+        public int playableBottom
+        {
+            get { return (int)this.drawOffset.Y + this.height; }
+        }
+
+        public int playableLeft
+        {
+            get { return (int)this.drawOffset.X; }
+        }
+
+        public int playableTop
+        {
+            get { return (int)this.drawOffset.Y; }
+        }
+
+        public int playableRight
+        {
+            get { return (int)this.drawOffset.X + this.width; }
+        }
 
         public Stage(int height, int width, int borderWidth, Texture2D borderTexture, Texture2D bgTexture, Vector2 drawOffset)
         {
@@ -37,11 +56,11 @@ namespace JezzBall2.Stages
 
         public void draw(SpriteBatch spriteBatch)
         {
-            for (int i = (int)this.drawOffset.X; i < this.width + drawOffset.X; i += backgroundTexture.Width)
+            for (int i = (int)this.drawOffset.X; i < this.width + drawOffset.X; i += backgroundTexture.Width / 2)
             {
-                for (int j = (int)this.drawOffset.Y; j < this.height + drawOffset.Y; j += backgroundTexture.Height)
+                for (int j = (int)this.drawOffset.Y; j < this.height + drawOffset.Y; j += backgroundTexture.Height / 2)
                 {
-                    spriteBatch.Draw(backgroundTexture, new Rectangle(i, j, backgroundTexture.Width, backgroundTexture.Height), Color.White);
+                    spriteBatch.Draw(backgroundTexture, new Rectangle(i, j, backgroundTexture.Width / 2, backgroundTexture.Height / 2), Color.White);
                 }
             }
             DrawUtility.drawHollowRectangle(spriteBatch, this.borderTexture, Color.White, this.borderWidth, (int)this.drawOffset.Y, (int)this.drawOffset.X, this.height, this.width);
