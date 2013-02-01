@@ -6,23 +6,72 @@ using System.Text;
 using Animations;
 using Microsoft.Xna.Framework.Graphics;
 using JezzBall2.Interfaces;
+using JezzBall2.Stages;
 
 namespace JezzBall2.Players
 {
     class Player : IMoveable
     {
-        public Animation standingAnimation;
-        public Animation runningAnimation;
-        public Animation jumpingAnimation;
+        protected Animation standingAnimation;
+        protected Animation runningAnimation;
+        protected Animation jumpingAnimation;
 
-        public Vector2 position;
+        protected Vector2 position;
 
-        public int health;
-        public int width;
-        public int height;
-        public float speed;
-        public float jumpSpeed;
-        
+        protected int health;
+        protected int width;
+        protected int height;
+        protected float speed;
+        protected float jumpSpeed;
+        protected Stage stage;
+
+        protected Boolean reverse;
+
+        public void setReverse(Boolean reverse)
+        {
+            this.reverse = reverse;
+        }
+
+        public int getWidth()
+        {
+            return this.width;
+        }
+
+        public int getHeight()
+        {
+            return this.height;
+        }
+
+        public Vector2 getPosition()
+        {
+            return this.position;
+        }
+
+        public void setPosition(Vector2 position)
+        {
+            this.position = position;
+        }
+
+        public void setPositionX(float X)
+        {
+            this.position.X = X;
+        }
+
+        public void setPositionY(float Y)
+        {
+            this.position.Y = Y;
+        }
+
+        public float getSpeed()
+        {
+            return this.speed;
+        }
+
+        public void setStage(Stage stage)
+        {
+            this.stage = stage;
+        }
+
         public Player(Animation standingAnimation, Animation runningAnimation, Animation jumpingAnimation, Vector2 position, int width, int height, int health, float speed, float jumpSpeed)
         {
             this.standingAnimation = standingAnimation;
@@ -35,21 +84,19 @@ namespace JezzBall2.Players
             this.speed = speed;
             this.jumpSpeed = jumpSpeed;
         }
-
-        public Vector2 getPosition()
-        {
-            return this.position;
-        }
-
+        
         public void update(GameTime gameTime)
         {
-            standingAnimation.setPosition(this.position);
-            standingAnimation.update(gameTime);
+            this.standingAnimation.setPosition(Vector2.Add(this.position, this.stage.getDrawOffset()));
+            this.standingAnimation.update(gameTime);
         }
 
         public void draw(SpriteBatch spriteBatch)
         {
-            this.standingAnimation.draw(spriteBatch);
+            if (reverse)
+                this.standingAnimation.draw(spriteBatch, SpriteEffects.FlipHorizontally);
+            else
+                this.standingAnimation.draw(spriteBatch);
         }
     }
 }

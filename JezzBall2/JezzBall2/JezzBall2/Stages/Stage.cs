@@ -18,8 +18,9 @@ namespace JezzBall2.Stages
         protected Vector2 drawOffset;
         protected Texture2D borderTexture;
         protected Texture2D backgroundTexture;
+        protected int ballGenFrequency;
 
-        public int playableBottom
+/*        public int playableBottom
         {
             get { return (int)this.drawOffset.Y + this.height; }
         }
@@ -38,15 +39,37 @@ namespace JezzBall2.Stages
         {
             get { return (int)this.drawOffset.X + this.width; }
         }
+*/
 
-        public Stage(int height, int width, int borderWidth, Texture2D borderTexture, Texture2D bgTexture, Vector2 drawOffset)
+        public Vector2 getDrawOffset()
+        {
+            return this.drawOffset;
+        }
+
+        public int getHeight()
+        {
+            return this.height;
+        }
+
+        public int getWidth()
+        {
+            return this.width;
+        }
+
+        public int getBallGenFrequency()
+        {
+            return this.ballGenFrequency;
+        }
+
+        public Stage(int height, int width, int borderWidth, Texture2D borderTexture, Texture2D backgroundTexture, Vector2 drawOffset, int ballGenFrequency)
         {
             this.height = height;
             this.width = width;
             this.borderWidth = borderWidth;
             this.drawOffset = drawOffset;
             this.borderTexture = borderTexture;
-            this.backgroundTexture = bgTexture;
+            this.backgroundTexture = backgroundTexture;
+            this.ballGenFrequency = ballGenFrequency;
         }
 
         public void update(GameTime gameTime)

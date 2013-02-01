@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Animations
 {
-    public class Animation
+    public class Animation : ICloneable
     {
         // The image representing the collection of images used for animation
         protected Texture2D spriteStrip;
@@ -21,9 +21,13 @@ namespace Animations
 
         // The number of frames that the animation contains
         protected int frameCount;
+        protected int frameRows;
+        protected int framesPerRow;
 
         // The index of the current frame we are displaying
         protected int currentFrame;
+        protected int currentFrameRow;
+        protected int currentFrameRowPos;
 
         // The color of the frame we will be displaying
         protected Color color;
@@ -61,6 +65,11 @@ namespace Animations
             this.position = position;
         }
 
+        public Object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
         public void initialize(Animation animation)
         {
             this.color = animation.color;
@@ -68,6 +77,9 @@ namespace Animations
             this.frameHeight = animation.frameHeight;
             this.frameCount = animation.frameCount;
             this.frameTime = animation.frameTime;
+            this.frameRows = animation.frameRows;
+            this.framesPerRow = animation.framesPerRow;
+
             this.scale = animation.scale;
 
             this.looping = animation.looping;
@@ -77,13 +89,15 @@ namespace Animations
             // Set the time to zero
             this.elapsedTime = 0;
             this.currentFrame = 0;
+            this.currentFrameRow = 0;
+            this.currentFrameRowPos = 0;
 
             // Set the Animation to active by default
             this.active = true;
         }
 
         public void initialize(Texture2D texture, Vector2 position,
-                                int frameWidth, int frameHeight, int frameCount,
+                                int frameWidth, int frameHeight, int frameCount, int frameRows, int framesPerRow,
                                 int frametime, Color color, float scale, bool looping)
         {
             // Keep a local copy of the values passed in
@@ -91,6 +105,8 @@ namespace Animations
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
             this.frameCount = frameCount;
+            this.frameRows = frameRows;
+            this.framesPerRow = framesPerRow;
             this.frameTime = frametime;
             this.scale = scale;
 
@@ -101,6 +117,8 @@ namespace Animations
             // Set the time to zero
             this.elapsedTime = 0;
             this.currentFrame = 0;
+            this.currentFrameRow = 0;
+            this.currentFrameRowPos = 0;
 
             // Set the Animation to active by default
             this.active = true;
@@ -121,14 +139,21 @@ namespace Animations
             {
                 // Move to the next frame
                 this.currentFrame++;
+                this.currentFrameRowPos++;
 
-                // If the currentFrame is equal to frameCount reset currentFrame to zero
-                if (this.currentFrame == this.frameCount)
+                if (this.currentFrameRowPos == this.framesPerRow)
                 {
-                    this.currentFrame = 0;
-                    // If we are not looping deactivate the animation
-                    if (this.looping == false)
-                        this.active = false;
+                    this.currentFrameRowPos = 0;
+                    this.currentFrameRow++;
+
+                    if (this.currentFrameRow == this.frameRows)
+                    {
+                        this.currentFrameRow = 0;
+                        this.currentFrame = 0;
+                        
+                        if (this.looping == false)
+                            this.active = false;
+                    }
                 }
 
                 // Reset the elapsed time to zero
@@ -136,7 +161,7 @@ namespace Animations
             }
 
             // the rectangle in the image that we are grabbing
-            this.sourceRect = new Rectangle(this.currentFrame * this.frameWidth + (1 * this.currentFrame), 0, this.frameWidth, this.frameHeight);
+            this.sourceRect = new Rectangle(this.currentFrameRowPos * this.frameWidth, this.currentFrameRow * this.frameHeight, this.frameWidth, this.frameHeight);
 
             // the rectangle on screen where this will be drawn
             this.destinationRect = new Rectangle((int)this.position.X, (int)this.position.Y, (int)(this.frameWidth * this.scale), (int)(this.frameHeight * this.scale));

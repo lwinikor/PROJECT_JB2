@@ -15,6 +15,8 @@ using JezzBall2.Utility;
 using JezzBall2.Enums;
 using JezzBall2.Stages;
 using JezzBall2.Players;
+using JezzBall2.Balls;
+using JezzBall2.Constants;
 
 namespace JezzBall2
 {
@@ -72,6 +74,11 @@ namespace JezzBall2
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            Dictionary<BallType, Texture2D> ballTextures = new Dictionary<BallType, Texture2D>();
+            ballTextures.Add(BallType.NORMAL, Content.Load<Texture2D>("Textures/Balls/ball"));
+
+            BallFactory.getInstance().loadContent(ballTextures);
+
             this.titleScreen = new TitleScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TitleScreen"), Content.Load<SpriteFont>("Fonts/PressStart"), null, Color.Black);
             this.titleScreen.Hide();
             this.Components.Add(this.titleScreen);
@@ -91,12 +98,15 @@ namespace JezzBall2
 
             Texture2D playerTexture = Content.Load<Texture2D>("Textures/Characters/playerTest");
 
-            Stage stage = new Stage(600, 1000, 1, borderTexture, bgTexture, new Vector2(140, 60));
+            Stage stage = new Stage(600, 1000, 1, borderTexture, bgTexture, new Vector2(140, 60), 120);
+
             List<Player> players = new List<Player>();
             Animation playerAnimation = new Animation();
-            playerAnimation.initialize(playerTexture, Vector2.Zero, 30, 50, 1, 30, Color.White, 1.0f, true);
-            Player player1 = new Player(playerAnimation, playerAnimation, playerAnimation, new Vector2((stage.playableRight - stage.playableLeft) / 2, stage.playableBottom - 50), 30, 50, 100, 10, 10);
+            playerAnimation.initialize(playerTexture, Vector2.Zero, PlayerConstants.PLAYER_WIDTH, PlayerConstants.PLAYER_HEIGHT, 
+                PlayerConstants.PLAYER_STAND_NUM_FRAMES, PlayerConstants.PLAYER_STAND_NUM_FRAME_ROWS, PlayerConstants.PLAYER_STAND_NUM_FRAMES_PER_ROW, PlayerConstants.PLAYER_STAND_FRAMETIME, Color.White, 1.0f, true);
+            Player player1 = new Player(playerAnimation, playerAnimation, playerAnimation, new Vector2(stage.getWidth() / 2, stage.getHeight() - PlayerConstants.PLAYER_HEIGHT), PlayerConstants.PLAYER_WIDTH, PlayerConstants.PLAYER_HEIGHT, 100, PlayerConstants.PLAYER_SPEED, PlayerConstants.PLAYER_JUMP_SPEED);
             players.Add(player1);
+            player1.setStage(stage);
 
             this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players);
             this.actionScreen.Hide();

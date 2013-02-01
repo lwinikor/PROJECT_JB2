@@ -46,6 +46,33 @@
       <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Fonts\CreditsFont.xnb</Output>
       <Time>2013-01-21T21:21:53.855102-05:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\Backgrounds\backgroundTile.png</Source>
+      <Name>Textures\Backgrounds\backgroundTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Backgrounds\backgroundTile.xnb</Output>
+      <Time>2013-01-31T19:07:51.4583973-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Characters\playerTest.png</Source>
+      <Name>Textures\Characters\playerTest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\playerTest.xnb</Output>
+      <Time>2013-01-31T19:07:51.5003997-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Characters\CharacterWalkAnimation.png</Source>
+      <Name>Textures\Characters\CharacterWalkAnimation</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\CharacterWalkAnimation.xnb</Output>
+      <Time>2013-01-19T13:21:57.5520205-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

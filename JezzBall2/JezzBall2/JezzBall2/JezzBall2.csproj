@@ -111,11 +111,17 @@
     <Compile Include="Animations\ReversibleAnimation.cs" />
     <Compile Include="Animations\WeightedAnimation.cs" />
     <Compile Include="Balls\Ball.cs" />
+    <Compile Include="Balls\BallFactory.cs" />
+    <Compile Include="Constants\BallConstants.cs" />
     <Compile Include="Constants\CreditsConstants.cs" />
     <Compile Include="Constants\GameConstants.cs" />
     <Compile Include="Constants\MainMenuConstants.cs" />
+    <Compile Include="Constants\PauseScreenConstants.cs" />
+    <Compile Include="Constants\PlayerConstants.cs" />
     <Compile Include="Constants\StartScreenConstants.cs" />
+    <Compile Include="Enums\BallType.cs" />
     <Compile Include="Enums\MainMenu.cs" />
+    <Compile Include="Enums\PauseMenu.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,10 +132,12 @@
     <Compile Include="Screens\ActionScreen.cs" />
     <Compile Include="Screens\CreditScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
     <Compile Include="Stages\Stage.cs" />
     <Compile Include="Utility\DrawUtility.cs" />
     <Compile Include="Utility\KeyboardUtility.cs" />
+    <Compile Include="Utility\PositionUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

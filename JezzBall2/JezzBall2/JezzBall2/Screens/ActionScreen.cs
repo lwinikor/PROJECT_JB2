@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Input;
 using JezzBall2.Stages;
 using JezzBall2.Players;
 using JezzBall2.Balls;
+using JezzBall2.Utility;
+using JezzBall2.Enums;
 
 namespace JezzBall2.Screens
 {
@@ -19,7 +21,7 @@ namespace JezzBall2.Screens
         protected List<Ball> balls;
         protected KeyboardState currentKeyboardState;
         protected KeyboardState previousKeyboardState;
-
+        protected int elapsedTime;
 
         public ActionScreen(Game game, SpriteBatch spriteBatch, Stage stage, List<Player> players)
             : base(game, spriteBatch)
@@ -34,19 +36,23 @@ namespace JezzBall2.Screens
             this.stage.update(gameTime);
             this.currentKeyboardState = Keyboard.GetState();
 
+            this.ballGeneration(gameTime);
+
             foreach (Player p in this.players)
             {
                 if(this.currentKeyboardState.IsKeyDown(Keys.Right))
                 {
-                    p.position.X += p.speed;
-                    if(p.position.X > this.stage.playableRight - p.width)
-                        p.position.X = this.stage.playableRight - p.width;
+                    p.setReverse(false);
+                    p.setPositionX(p.getPosition().X + p.getSpeed());
+                    if(p.getPosition().X > this.stage.getWidth() - p.getWidth())
+                        p.setPositionX(this.stage.getWidth() - p.getWidth());
                 }
                 if (this.currentKeyboardState.IsKeyDown(Keys.Left))
                 {
-                    p.position.X -= p.speed;
-                    if (p.position.X < this.stage.playableLeft)
-                        p.position.X = this.stage.playableLeft;
+                    p.setReverse(true);
+                    p.setPositionX(p.getPosition().X - p.getSpeed());
+                    if (p.getPosition().X < 0)
+                        p.setPositionX(0);
                 }
 
                 p.update(gameTime);
@@ -61,10 +67,25 @@ namespace JezzBall2.Screens
             this.previousKeyboardState = this.currentKeyboardState;
         }
 
+        public void ballGeneration(GameTime gameTime)
+        {
+            this.elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (this.elapsedTime >= this.stage.getBallGenFrequency())
+            {
+                Ball b = BallFactory.getInstance().getBall(BallType.NORMAL);
+                b.setPosition(PositionUtility.getRandomPosition(this.stage.getWidth(), this.stage.getHeight()));
+                b.setStage(this.stage);
+
+                this.balls.Add(b);
+                this.elapsedTime = 0;
+            }
+        }
+
         public override void Draw(GameTime gameTime)
         {
             this.stage.draw(this.spriteBatch);
-            foreach (Player p in this.players)
+                        foreach (Player p in this.players)
             {
                 p.draw(spriteBatch);
             }

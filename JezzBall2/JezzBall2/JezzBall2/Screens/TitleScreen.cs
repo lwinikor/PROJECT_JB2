@@ -91,7 +91,7 @@ namespace JezzBall2.Screens
 
             this.elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (elapsedTime >= StartScreenConstants.PRESS_START_FLASH_DURATION)
+            if (this.elapsedTime >= StartScreenConstants.PRESS_START_FLASH_DURATION)
             {
                 this.displayPressStart = !this.displayPressStart;
                 this.elapsedTime = 0;
