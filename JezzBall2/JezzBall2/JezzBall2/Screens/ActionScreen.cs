@@ -42,17 +42,11 @@ namespace JezzBall2.Screens
             {
                 if(this.currentKeyboardState.IsKeyDown(Keys.Right))
                 {
-                    p.setReverse(false);
-                    p.setPositionX(p.getPosition().X + p.getSpeed());
-                    if(p.getPosition().X > this.stage.getWidth() - p.getWidth())
-                        p.setPositionX(this.stage.getWidth() - p.getWidth());
+                    p.move(Keys.Right);
                 }
                 if (this.currentKeyboardState.IsKeyDown(Keys.Left))
                 {
-                    p.setReverse(true);
-                    p.setPositionX(p.getPosition().X - p.getSpeed());
-                    if (p.getPosition().X < 0)
-                        p.setPositionX(0);
+                    p.move(Keys.Left);
                 }
 
                 p.update(gameTime);

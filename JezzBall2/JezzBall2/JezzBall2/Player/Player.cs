@@ -7,6 +7,7 @@ using Animations;
 using Microsoft.Xna.Framework.Graphics;
 using JezzBall2.Interfaces;
 using JezzBall2.Stages;
+using Microsoft.Xna.Framework.Input;
 
 namespace JezzBall2.Players
 {
@@ -97,6 +98,26 @@ namespace JezzBall2.Players
                 this.standingAnimation.draw(spriteBatch, SpriteEffects.FlipHorizontally);
             else
                 this.standingAnimation.draw(spriteBatch);
+        }
+
+        public void move(Keys key)
+        {
+            if (key == Keys.Left)
+            {
+                this.reverse = true;
+                this.position.X -= this.speed;
+                if (this.position.X < 0)
+                    this.position.X = 0;
+            }
+            else if (key == Keys.Right)
+            {
+                this.reverse = false;
+                this.position.X += this.speed;
+                if (this.position.X > this.stage.getWidth() - this.width)
+                {
+                    this.position.X = this.stage.getWidth() - this.width;
+                }
+            }
         }
     }
 }
