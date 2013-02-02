@@ -22,13 +22,16 @@ namespace JezzBall2.Screens
         protected KeyboardState currentKeyboardState;
         protected KeyboardState previousKeyboardState;
         protected int elapsedTime;
+        protected HudComponent hud;
 
-        public ActionScreen(Game game, SpriteBatch spriteBatch, Stage stage, List<Player> players)
+        public ActionScreen(Game game, SpriteBatch spriteBatch, Stage stage, List<Player> players, HudComponent hud)
             : base(game, spriteBatch)
         {
             this.stage = stage;
             this.players = players;
             this.balls = new List<Ball>();
+            this.hud = hud;
+            this.Components.Add(hud);
         }
 
         public override void Update(GameTime gameTime)

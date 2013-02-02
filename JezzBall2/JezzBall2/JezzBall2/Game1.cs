@@ -87,7 +87,7 @@ namespace JezzBall2
             this.Components.Add(this.mainMenuScreen);
 
             String[] credits = { "LEE", "JOSH", "NACHO" };
-            this.creditScreen = new CreditScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TitleScreen"), credits, Color.White);
+            this.creditScreen = new CreditScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/CreditsFont"), credits, Color.White);
             this.creditScreen.Hide();
             this.Components.Add(this.creditScreen);
 
@@ -108,7 +108,8 @@ namespace JezzBall2
             players.Add(player1);
             player1.setStage(stage);
 
-            this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players);
+            HudComponent hud = new HudComponent(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TimerFont"), new Vector2(HudConstants.TIMER_X_POSITION, HudConstants.TIMER_Y_POSITION), Color.White);
+            this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players, hud);
             this.actionScreen.Hide();
             this.Components.Add(this.actionScreen);
 

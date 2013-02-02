@@ -73,6 +73,15 @@
       <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\CharacterWalkAnimation.xnb</Output>
       <Time>2013-01-19T13:21:57.5520205-05:00</Time>
     </Item>
+    <Item>
+      <Source>Fonts\TimerFont.spritefont</Source>
+      <Name>Fonts\TimerFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Fonts\TimerFont.xnb</Output>
+      <Time>2013-02-02T12:56:34.2410889-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
