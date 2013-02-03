@@ -17,5 +17,8 @@ namespace JezzBall2.Constants
 
         internal const float PLAYER_SPEED = 10;
         internal const float PLAYER_JUMP_SPEED = 10;
+
+        internal const int PLAYER_HEALTH = 1;
+        internal const int PLAYER_SHIELD_RADIUS = 35;
     }
 }

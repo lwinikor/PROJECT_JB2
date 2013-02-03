@@ -82,14 +82,17 @@ namespace JezzBall2.Screens
         public override void Draw(GameTime gameTime)
         {
             this.stage.draw(this.spriteBatch);
-                        foreach (Player p in this.players)
-            {
-                p.draw(spriteBatch);
-            }
+            
             foreach (Ball b in this.balls)
             {
                 b.draw(spriteBatch);
             }
+
+            foreach (Player p in this.players)
+            {
+                p.draw(spriteBatch);
+            }
+
             base.Draw(gameTime);
         }
     }

@@ -8,7 +8,52 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Balls\ball.xnb</Output>
-      <Time>2013-01-10T21:46:54.0084998-05:00</Time>
+      <Time>2013-02-02T20:51:23.6927489-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Backgrounds\backgroundTile.png</Source>
+      <Name>Textures\Backgrounds\backgroundTile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Backgrounds\backgroundTile.xnb</Output>
+      <Time>2013-01-31T19:07:51.4583973-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Characters\playerTest.png</Source>
+      <Name>Textures\Characters\playerTest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\playerTest.xnb</Output>
+      <Time>2013-02-02T13:01:11.4739457-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Characters\CharacterWalkAnimation.png</Source>
+      <Name>Textures\Characters\CharacterWalkAnimation</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\CharacterWalkAnimation.xnb</Output>
+      <Time>2013-01-19T13:21:57.5520205-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Characters\ActiveShield.png</Source>
+      <Name>Textures\Characters\ActiveShield</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\ActiveShield.xnb</Output>
+      <Time>2013-02-02T20:39:40.1615092-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Characters\InactiveShield.png</Source>
+      <Name>Textures\Characters\InactiveShield</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\InactiveShield.xnb</Output>
+      <Time>2013-02-02T20:40:04.5939066-05:00</Time>
     </Item>
     <Item>
       <Source>Fonts\TitleScreen.spritefont</Source>
@@ -47,40 +92,13 @@
       <Time>2013-01-21T21:21:53.855102-05:00</Time>
     </Item>
     <Item>
-      <Source>Textures\Backgrounds\backgroundTile.png</Source>
-      <Name>Textures\Backgrounds\backgroundTile</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Backgrounds\backgroundTile.xnb</Output>
-      <Time>2013-01-31T19:07:51.4583973-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Characters\playerTest.png</Source>
-      <Name>Textures\Characters\playerTest</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\playerTest.xnb</Output>
-      <Time>2013-01-31T19:07:51.5003997-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\Characters\CharacterWalkAnimation.png</Source>
-      <Name>Textures\Characters\CharacterWalkAnimation</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\CharacterWalkAnimation.xnb</Output>
-      <Time>2013-01-19T13:21:57.5520205-05:00</Time>
-    </Item>
-    <Item>
       <Source>Fonts\TimerFont.spritefont</Source>
       <Name>Fonts\TimerFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Fonts\TimerFont.xnb</Output>
-      <Time>2013-02-02T12:56:34.2410889-05:00</Time>
+      <Time>2013-02-02T13:01:48.4550609-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -28,6 +28,13 @@ namespace JezzBall2.Players
 
         protected Boolean reverse;
 
+        protected Shield shield;
+
+        public Vector2 getDrawOffset()
+        {
+            return this.stage.getDrawOffset();
+        }
+
         public void setReverse(Boolean reverse)
         {
             this.reverse = reverse;
@@ -73,7 +80,12 @@ namespace JezzBall2.Players
             this.stage = stage;
         }
 
-        public Player(Animation standingAnimation, Animation runningAnimation, Animation jumpingAnimation, Vector2 position, int width, int height, int health, float speed, float jumpSpeed)
+        public Vector2 getCenterPosition()
+        {
+            return new Vector2(this.position.X + (this.width / 2), this.position.Y + (this.height / 2));
+        }
+
+        public Player(Animation standingAnimation, Animation runningAnimation, Animation jumpingAnimation, Vector2 position, int width, int height, int health, float speed, float jumpSpeed, Shield shield)
         {
             this.standingAnimation = standingAnimation;
             this.runningAnimation = runningAnimation;
@@ -84,12 +96,15 @@ namespace JezzBall2.Players
             this.health = health;
             this.speed = speed;
             this.jumpSpeed = jumpSpeed;
+            this.shield = shield;
+            this.shield.setPlayer(this);
         }
         
         public void update(GameTime gameTime)
         {
             this.standingAnimation.setPosition(Vector2.Add(this.position, this.stage.getDrawOffset()));
             this.standingAnimation.update(gameTime);
+            this.shield.update(gameTime);
         }
 
         public void draw(SpriteBatch spriteBatch)
@@ -98,6 +113,8 @@ namespace JezzBall2.Players
                 this.standingAnimation.draw(spriteBatch, SpriteEffects.FlipHorizontally);
             else
                 this.standingAnimation.draw(spriteBatch);
+            
+            this.shield.draw(spriteBatch);
         }
 
         public void move(Keys key)

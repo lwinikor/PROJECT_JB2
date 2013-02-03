@@ -101,10 +101,11 @@ namespace JezzBall2
             Stage stage = new Stage(600, 1000, 1, borderTexture, bgTexture, new Vector2(140, 60), 120);
 
             List<Player> players = new List<Player>();
-            Animation playerAnimation = new Animation();
-            playerAnimation.initialize(playerTexture, Vector2.Zero, PlayerConstants.PLAYER_WIDTH, PlayerConstants.PLAYER_HEIGHT, 
+            Shield player1Shield = new Shield(Content.Load<Texture2D>("Textures/Characters/InactiveShield"), Content.Load<Texture2D>("Textures/Characters/ActiveShield"), PlayerConstants.PLAYER_SHIELD_RADIUS, Color.White);
+            Animation player1Animation = new Animation();
+            player1Animation.initialize(playerTexture, Vector2.Zero, PlayerConstants.PLAYER_WIDTH, PlayerConstants.PLAYER_HEIGHT, 
                 PlayerConstants.PLAYER_STAND_NUM_FRAMES, PlayerConstants.PLAYER_STAND_NUM_FRAME_ROWS, PlayerConstants.PLAYER_STAND_NUM_FRAMES_PER_ROW, PlayerConstants.PLAYER_STAND_FRAMETIME, Color.White, 1.0f, true);
-            Player player1 = new Player(playerAnimation, playerAnimation, playerAnimation, new Vector2(stage.getWidth() / 2, stage.getHeight() - PlayerConstants.PLAYER_HEIGHT), PlayerConstants.PLAYER_WIDTH, PlayerConstants.PLAYER_HEIGHT, 100, PlayerConstants.PLAYER_SPEED, PlayerConstants.PLAYER_JUMP_SPEED);
+            Player player1 = new Player(player1Animation, player1Animation, player1Animation, new Vector2(stage.getWidth() / 2, stage.getHeight() - PlayerConstants.PLAYER_HEIGHT), PlayerConstants.PLAYER_WIDTH, PlayerConstants.PLAYER_HEIGHT, PlayerConstants.PLAYER_HEALTH, PlayerConstants.PLAYER_SPEED, PlayerConstants.PLAYER_JUMP_SPEED, player1Shield);
             players.Add(player1);
             player1.setStage(stage);
 

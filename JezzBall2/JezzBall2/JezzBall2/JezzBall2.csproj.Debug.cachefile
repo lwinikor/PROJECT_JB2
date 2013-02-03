@@ -1,9 +1,11 @@
 Content\Textures\Balls\ball.xnb
+Content\Textures\Backgrounds\backgroundTile.xnb
+Content\Textures\Characters\playerTest.xnb
+Content\Textures\Characters\CharacterWalkAnimation.xnb
+Content\Textures\Characters\ActiveShield.xnb
+Content\Textures\Characters\InactiveShield.xnb
 Content\Fonts\TitleScreen.xnb
 Content\Fonts\PressStart.xnb
 Content\Fonts\MainMenu.xnb
 Content\Fonts\CreditsFont.xnb
-Content\Textures\Backgrounds\backgroundTile.xnb
-Content\Textures\Characters\playerTest.xnb
-Content\Textures\Characters\CharacterWalkAnimation.xnb
 Content\Fonts\TimerFont.xnb
