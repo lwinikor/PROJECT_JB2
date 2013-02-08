@@ -80,6 +80,11 @@ namespace JezzBall2.Players
             this.stage = stage;
         }
 
+        public void setShieldAngle(float activeAngle)
+        {
+            this.shield.setActiveAngle(activeAngle);
+        }
+
         public Vector2 getCenterPosition()
         {
             return new Vector2(this.position.X + (this.width / 2), this.position.Y + (this.height / 2));

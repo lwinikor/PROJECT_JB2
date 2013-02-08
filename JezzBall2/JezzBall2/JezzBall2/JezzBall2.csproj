@@ -140,6 +140,7 @@
     <Compile Include="Stages\Stage.cs" />
     <Compile Include="Utility\DrawUtility.cs" />
     <Compile Include="Utility\KeyboardUtility.cs" />
+    <Compile Include="Utility\MathUtility.cs" />
     <Compile Include="Utility\PositionUtility.cs" />
   </ItemGroup>
   <ItemGroup>

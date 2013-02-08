@@ -43,7 +43,7 @@ namespace JezzBall2.Screens
 
             foreach (Player p in this.players)
             {
-                if(this.currentKeyboardState.IsKeyDown(Keys.Right))
+                if (this.currentKeyboardState.IsKeyDown(Keys.Right))
                 {
                     p.move(Keys.Right);
                 }
@@ -52,6 +52,7 @@ namespace JezzBall2.Screens
                     p.move(Keys.Left);
                 }
 
+                this.setPlayerShieldAngle(p);
                 p.update(gameTime);
             }
             foreach (Ball b in this.balls)
@@ -62,6 +63,26 @@ namespace JezzBall2.Screens
             base.Update(gameTime);
 
             this.previousKeyboardState = this.currentKeyboardState;
+        }
+
+        public void setPlayerShieldAngle(Player p)
+        {
+            if (this.currentKeyboardState.IsKeyDown(Keys.W) && this.currentKeyboardState.IsKeyDown(Keys.D))
+                p.setShieldAngle(45);
+            else if (this.currentKeyboardState.IsKeyDown(Keys.A) && this.currentKeyboardState.IsKeyDown(Keys.W))
+                p.setShieldAngle(135);
+            else if (this.currentKeyboardState.IsKeyDown(Keys.S) && this.currentKeyboardState.IsKeyDown(Keys.A))
+                p.setShieldAngle(225);
+            else if (this.currentKeyboardState.IsKeyDown(Keys.D) && this.currentKeyboardState.IsKeyDown(Keys.S))
+                p.setShieldAngle(315);
+            else if (this.currentKeyboardState.IsKeyDown(Keys.D))
+                p.setShieldAngle(0);    
+            else if (this.currentKeyboardState.IsKeyDown(Keys.W))
+                p.setShieldAngle(90);
+            else if (this.currentKeyboardState.IsKeyDown(Keys.A))
+                p.setShieldAngle(180);
+            else if (this.currentKeyboardState.IsKeyDown(Keys.S))
+                p.setShieldAngle(270);
         }
 
         public void ballGeneration(GameTime gameTime)

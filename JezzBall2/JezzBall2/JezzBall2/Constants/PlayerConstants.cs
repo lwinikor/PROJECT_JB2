@@ -20,5 +20,6 @@ namespace JezzBall2.Constants
 
         internal const int PLAYER_HEALTH = 1;
         internal const int PLAYER_SHIELD_RADIUS = 35;
+        internal const int PLAYER_SHIELD_ACTIVE_DEGREES = 45;
     }
 }

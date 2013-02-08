@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\ActiveShield.xnb</Output>
-      <Time>2013-02-02T20:39:40.1615092-05:00</Time>
+      <Time>2013-02-05T23:08:25.2926997-05:00</Time>
     </Item>
     <Item>
       <Source>Textures\Characters\InactiveShield.png</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Lee\Documents\PROJECT_JB2\JezzBall2\JezzBall2\JezzBall2\bin\x86\Debug\Content\Textures\Characters\InactiveShield.xnb</Output>
-      <Time>2013-02-02T20:40:04.5939066-05:00</Time>
+      <Time>2013-02-05T23:08:41.9896547-05:00</Time>
     </Item>
     <Item>
       <Source>Fonts\TitleScreen.spritefont</Source>
