@@ -66,5 +66,10 @@ namespace ScreenManager
         {
             this.Enabled = true;
         }
+
+        public void reset()
+        {
+            this.time = 0;
+        }
     }
 }

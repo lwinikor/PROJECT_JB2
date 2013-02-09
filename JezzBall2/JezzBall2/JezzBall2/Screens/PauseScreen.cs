@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ScreenManager;
 using JezzBall2.Constants;
+using JezzBall2.Enums;
 
 namespace JezzBall2.Screens
 {
@@ -18,6 +19,8 @@ namespace JezzBall2.Screens
         protected Color backgroundColor = Color.Black;
         protected Color textColor = Color.White;
 
+        protected Color transparentBgColor;
+        protected Texture2D transparentBg;
         protected Texture2D image;
         protected Rectangle imageRectangle;
         protected Color color;
@@ -31,26 +34,19 @@ namespace JezzBall2.Screens
         protected Vector2 pausePosition;
         protected Vector2 menuPosition;
 
-        protected GameScreen prevScreen;
-        protected GameScreen mainMenuScreen;
+        protected ActionScreen actionScreen;
 
         public MenuComponent getMenuComponent()
         {
             return this.menuComponent;
         }
-
-        public int SelectedIndex
+        
+        public void setActionScreen(ActionScreen actionScreen)
         {
-            get { return this.menuComponent.SelectedIndex; }
-            set { this.menuComponent.SelectedIndex = value; }
+            this.actionScreen = actionScreen;
         }
 
-        public void setPrevScreen(GameScreen prevScreen)
-        {
-            this.prevScreen = prevScreen;
-        }
-
-        public PauseScreen(Game game, SpriteBatch spriteBatch, SpriteFont pauseSpriteFont, SpriteFont menuSpriteFont, Texture2D image, Color color, GameScreen prevScreen, GameScreen mainMenuScreen)
+        public PauseScreen(Game game, SpriteBatch spriteBatch, SpriteFont pauseSpriteFont, SpriteFont menuSpriteFont, Texture2D image, Color color, ActionScreen actionScreen)
             : base(game, spriteBatch)
         {
             this.menuComponent = new MenuComponent(game, spriteBatch, menuSpriteFont, this.menuItems, PauseScreenConstants.SPACING, Color.White, Color.Red);
@@ -60,12 +56,20 @@ namespace JezzBall2.Screens
             this.image = image;
             this.imageRectangle = new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height);
             this.color = color;
-            this.prevScreen = prevScreen;
-            this.mainMenuScreen = mainMenuScreen;
+            this.actionScreen = actionScreen;
             this.setTextPositions();
+            this.setTransparentBg();
+
         }
 
-        public void setTextPositions()
+        private void setTransparentBg()
+        {
+            this.transparentBg = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            this.transparentBg.SetData(new[] { Color.Black });
+            this.transparentBgColor = new Color(255, 255, 255, PauseScreenConstants.PAUSE_BG_ALPHA);
+        }
+
+        private void setTextPositions()
         {
             float height = 0;
             float width = 0;
@@ -77,8 +81,34 @@ namespace JezzBall2.Screens
             this.pausePosition = new Vector2((Game.Window.ClientBounds.Width - width) / 2, (Game.Window.ClientBounds.Height) * PauseScreenConstants.PAUSE_Y_FRACTION);
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            if (this.menuComponent.SelectionConfirmed)
+            {
+                this.menuComponent.SelectionConfirmed = false;
+                switch (this.menuComponent.SelectedIndex)
+                {
+                    case (int) PauseMenu.RESTART:
+                        this.actionScreen.reset();
+                        break;
+                    case (int) PauseMenu.RETURN:
+                        this.actionScreen.reset();
+                        ((Game1) this.game).switchToMainMenu(true);
+                        break;
+                    case (int) PauseMenu.RESUME:
+                    default:
+                        this.actionScreen.unpause();
+                        break;
+                }
+                this.menuComponent.SelectedIndex = (int) PauseMenu.RESUME;
+            }
+            base.Update(gameTime);
+        }
+
         public override void Draw(GameTime gameTime)
         {
+            this.spriteBatch.Draw(this.transparentBg, new Rectangle(0, 0, Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height), this.transparentBgColor);
+
             if (this.image != null)
                 this.spriteBatch.Draw(this.image, this.imageRectangle, this.color);
 

@@ -110,7 +110,7 @@ namespace JezzBall2
             players.Add(player1);
             player1.setStage(stage);
 
-            this.pauseScreen = new PauseScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/PauseScreen"), Content.Load<SpriteFont>("Fonts/PauseMenu"), null, Color.White, null, this.mainMenuScreen);
+            this.pauseScreen = new PauseScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/PauseScreen"), Content.Load<SpriteFont>("Fonts/PauseMenu"), null, Color.White, this.actionScreen);
             this.pauseScreen.hide();
             HudComponent hud = new HudComponent(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TimerFont"), new Vector2(HudConstants.TIMER_X_POSITION, HudConstants.TIMER_Y_POSITION), Color.White);
             this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players, hud, this.pauseScreen);
@@ -153,38 +153,18 @@ namespace JezzBall2
             {
                 if (!this.titleScreen.Enabled)
                 {
-                    this.SwapToScreen(this.mainMenuScreen);
+                    this.swapToScreen(this.mainMenuScreen);
                 }
             }
             else if (this.activeScreen == this.mainMenuScreen)
             {
-                if(this.mainMenuScreen.SelectionConfirmed)
-                {
-                    this.mainMenuScreen.SelectionConfirmed = false;
-                    switch (this.mainMenuScreen.SelectedIndex)
-                    {
-                        case (int)MainMenu.EXIT:
-                            this.Exit(); 
-                            break;
-                        case (int)MainMenu.CREDITS:
-                            this.creditScreen.Enabled = true;
-                            this.SwapToScreen(this.creditScreen);
-                            break;
-                        case (int)MainMenu.SURVIVAL:
-                            this.actionScreen.Enabled = true;
-                            this.SwapToScreen(this.actionScreen);
-                            break;
-                        default:
-                            //this.Exit();
-                            break;
-                    }
-                }  
+                //this.mainMenuScreen
             }
             else if (this.activeScreen == this.creditScreen)
             {
                 if (!this.creditScreen.Enabled)
                 {
-                    this.SwapToScreen(this.mainMenuScreen);
+                    this.swapToScreen(this.mainMenuScreen);
                 }
             }
             else if (this.activeScreen == this.actionScreen)
@@ -210,8 +190,27 @@ namespace JezzBall2
             this.spriteBatch.End();
         }
 
+        public void switchToMainMenu(bool resetAction)
+        {
+            if (resetAction)
+            {
+                this.actionScreen.reset();
+            }
+            this.swapToScreen(this.mainMenuScreen);
+        }
+
+        public void switchToCredits()
+        {
+            this.swapToScreen(this.creditScreen);
+        }
+
+        public void switchToAction()
+        {
+            this.swapToScreen(this.actionScreen);
+        }
+
         // Helper functions
-        private void SwapToScreen(GameScreen newScreen)
+        private void swapToScreen(GameScreen newScreen)
         {
             this.activeScreen.hide();
             this.activeScreen = newScreen;

@@ -11,6 +11,7 @@ using JezzBall2.Players;
 using JezzBall2.Balls;
 using JezzBall2.Utility;
 using JezzBall2.Enums;
+using JezzBall2.Constants;
 
 namespace JezzBall2.Screens
 {
@@ -34,13 +35,14 @@ namespace JezzBall2.Screens
             this.hud = hud;
             this.Components.Add(hud);
             this.pauseScreen = pauseScreen;
+            this.pauseScreen.setActionScreen(this);
             this.Components.Add(pauseScreen);
         }
 
         public override void Update(GameTime gameTime)
         {
             this.currentKeyboardState = Keyboard.GetState();
-            this.updatePause(gameTime);
+            this.checkPause(gameTime);
            
             if (!this.pauseScreen.Enabled)
             {
@@ -53,17 +55,23 @@ namespace JezzBall2.Screens
 
         }
 
-        public void updatePause(GameTime gameTime)
+        public void pause()
         {
-            if (KeyboardUtility.checkKeyReleased(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState) && this.pauseScreen.Enabled)
+            this.pauseScreen.show();
+            this.hud.pause();
+        }
+
+        public void unpause()
+        {
+            this.pauseScreen.hide();
+            this.hud.unpause();
+        }
+
+        public void checkPause(GameTime gameTime)
+        {
+            if (KeyboardUtility.checkKeyReleased(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState) && !this.pauseScreen.Enabled)
             {
-                this.pauseScreen.hide();
-                this.hud.unpause();
-            }
-            else if (KeyboardUtility.checkKeyReleased(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState) && !this.pauseScreen.Enabled)
-            {
-                this.pauseScreen.show();
-                this.hud.pause();
+                this.pause();
             }
         }
 
@@ -158,6 +166,18 @@ namespace JezzBall2.Screens
                 if (component is DrawableGameComponent)
                     ((DrawableGameComponent)component).Visible = true;
             }
+        }
+
+        public void reset()
+        {
+            this.hud.reset();
+            this.balls = new List<Ball>();
+            foreach (Player p in this.players)
+            {
+                p.reset();
+            }
+            this.elapsedTime = 0;
+            this.unpause();
         }
     }
 }

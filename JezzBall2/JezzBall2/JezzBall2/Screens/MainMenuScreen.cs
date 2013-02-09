@@ -6,6 +6,7 @@ using ScreenManager;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using JezzBall2.Constants;
+using JezzBall2.Enums;
 
 namespace JezzBall2.Screens
 {
@@ -28,6 +29,31 @@ namespace JezzBall2.Screens
             get { return this.menuComponent.SelectionConfirmed; }
             set { this.menuComponent.SelectionConfirmed = value; }
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (this.SelectionConfirmed)
+            {
+                this.SelectionConfirmed = false;
+                switch (this.SelectedIndex)
+                {
+                    case (int)MainMenu.SURVIVAL:
+                        ((Game1)this.game).switchToAction();
+                        break;
+                    case (int)MainMenu.VS:
+                        break;
+                    case (int)MainMenu.CREDITS:
+                        ((Game1) this.game).switchToCredits();
+                        break;
+                    case (int)MainMenu.EXIT:
+                    default:
+                        this.game.Exit();
+                        break;
+                }
+            }  
+            base.Update(gameTime);
+        }
+
 
         public MainMenuScreen(Game game, SpriteBatch spriteBatch, SpriteFont spriteFont, Texture2D image, Color color)
             : base(game, spriteBatch)

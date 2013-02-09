@@ -13,5 +13,7 @@ namespace JezzBall2.Constants
         internal const float MENU_Y_FRACTION = 0.6f;
 
         internal const int SPACING = 25;
+
+        internal const float PAUSE_BG_ALPHA = 0.75f;
     }
 }

@@ -7,6 +7,7 @@ using Animations;
 using Microsoft.Xna.Framework.Graphics;
 using JezzBall2.Interfaces;
 using JezzBall2.Stages;
+using JezzBall2.Constants;
 using Microsoft.Xna.Framework.Input;
 
 namespace JezzBall2.Players
@@ -140,6 +141,13 @@ namespace JezzBall2.Players
                     this.position.X = this.stage.getWidth() - this.width;
                 }
             }
+        }
+
+        public void reset()
+        {
+            this.position = new Vector2(stage.getWidth() / 2, stage.getHeight() - PlayerConstants.PLAYER_HEIGHT);
+            this.reverse = false;
+            this.setShieldAngle(0);
         }
     }
 }
