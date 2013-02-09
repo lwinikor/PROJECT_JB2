@@ -54,7 +54,7 @@ namespace ScreenManager
             }
         }
 
-        public virtual void Show()
+        public virtual void show()
         {
             this.Visible = true;
             this.Enabled = true;
@@ -66,7 +66,7 @@ namespace ScreenManager
             }
         }
 
-        public virtual void Hide()
+        public virtual void hide()
         {
             this.Visible = false;
             this.Enabled = false;

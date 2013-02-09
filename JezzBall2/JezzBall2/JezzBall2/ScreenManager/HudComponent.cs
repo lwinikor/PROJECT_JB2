@@ -56,5 +56,15 @@ namespace ScreenManager
             String timerText = String.Format(HudConstants.TIMER_FORMAT, this.time / 1000);
             this.spriteBatch.DrawString(this.timerFont, timerText, this.timerPosition, this.timerColor); 
         }
+
+        public void pause()
+        {
+            this.Enabled = false;
+        }
+
+        public void unpause()
+        {
+            this.Enabled = true;
+        }
     }
 }

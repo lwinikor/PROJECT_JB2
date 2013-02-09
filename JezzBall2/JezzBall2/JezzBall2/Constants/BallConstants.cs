@@ -7,8 +7,8 @@ namespace JezzBall2.Constants
 {
     internal static class BallConstants
     {
-        internal const int BALL_WIDTH = 82;
-        internal const int BALL_HEIGHT = 80;
+        internal const int BALL_WIDTH = 41;
+        internal const int BALL_HEIGHT = 40;
         
         internal const int BALL_FRAMETIME = 20;
 

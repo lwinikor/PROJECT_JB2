@@ -7,10 +7,10 @@ namespace JezzBall2.Constants
 {
     internal static class PauseScreenConstants
     {
-        internal const String PAUSE = "PAUSE";
+        internal const String PAUSE = "PAUSED";
 
-        internal const float PAUSE_Y_FRACTION = 0.33f;
-        internal const float MENU_Y_FRACTION = 0.5f;
+        internal const float PAUSE_Y_FRACTION = 0.15f;
+        internal const float MENU_Y_FRACTION = 0.6f;
 
         internal const int SPACING = 25;
     }

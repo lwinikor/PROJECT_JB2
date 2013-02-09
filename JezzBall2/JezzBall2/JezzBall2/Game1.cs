@@ -33,6 +33,7 @@ namespace JezzBall2
         MainMenuScreen mainMenuScreen;
         CreditScreen creditScreen;
         ActionScreen actionScreen;
+        PauseScreen pauseScreen;
 
         // Keyboard states used to determine key presses
         KeyboardState currentKeyboardState;
@@ -80,15 +81,15 @@ namespace JezzBall2
             BallFactory.getInstance().loadContent(ballTextures);
 
             this.titleScreen = new TitleScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TitleScreen"), Content.Load<SpriteFont>("Fonts/PressStart"), null, Color.Black);
-            this.titleScreen.Hide();
+            this.titleScreen.hide();
             this.Components.Add(this.titleScreen);
             this.mainMenuScreen = new MainMenuScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/MainMenu"), null, Color.Black);
-            this.mainMenuScreen.Hide();
+            this.mainMenuScreen.hide();
             this.Components.Add(this.mainMenuScreen);
 
             String[] credits = { "LEE", "JOSH", "NACHO" };
             this.creditScreen = new CreditScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/CreditsFont"), credits, Color.White);
-            this.creditScreen.Hide();
+            this.creditScreen.hide();
             this.Components.Add(this.creditScreen);
 
             Texture2D borderTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -109,13 +110,15 @@ namespace JezzBall2
             players.Add(player1);
             player1.setStage(stage);
 
+            this.pauseScreen = new PauseScreen(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/PauseScreen"), Content.Load<SpriteFont>("Fonts/PauseMenu"), null, Color.White, null, this.mainMenuScreen);
+            this.pauseScreen.hide();
             HudComponent hud = new HudComponent(this, this.spriteBatch, Content.Load<SpriteFont>("Fonts/TimerFont"), new Vector2(HudConstants.TIMER_X_POSITION, HudConstants.TIMER_Y_POSITION), Color.White);
-            this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players, hud);
-            this.actionScreen.Hide();
+            this.actionScreen = new ActionScreen(this, this.spriteBatch, stage, players, hud, this.pauseScreen);
+            this.actionScreen.hide();
             this.Components.Add(this.actionScreen);
 
             this.activeScreen = this.titleScreen;
-            this.activeScreen.Show();
+            this.activeScreen.show();
         }
 
         /// <summary>
@@ -210,9 +213,9 @@ namespace JezzBall2
         // Helper functions
         private void SwapToScreen(GameScreen newScreen)
         {
-            this.activeScreen.Hide();
+            this.activeScreen.hide();
             this.activeScreen = newScreen;
-            this.activeScreen.Show();
+            this.activeScreen.show();
         }
     }
 }

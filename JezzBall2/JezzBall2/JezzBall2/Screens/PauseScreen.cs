@@ -12,7 +12,7 @@ namespace JezzBall2.Screens
 {
     class PauseScreen : GameScreen
     {
-        protected readonly String[] menuItems = { "RESUME", "RETURN TO MAIN MENU" };
+        protected readonly String[] menuItems = { "RESUME", "RESTART", "MAIN MENU" };
         protected MenuComponent menuComponent;
 
         protected Color backgroundColor = Color.Black;
@@ -34,10 +34,20 @@ namespace JezzBall2.Screens
         protected GameScreen prevScreen;
         protected GameScreen mainMenuScreen;
 
+        public MenuComponent getMenuComponent()
+        {
+            return this.menuComponent;
+        }
+
         public int SelectedIndex
         {
             get { return this.menuComponent.SelectedIndex; }
             set { this.menuComponent.SelectedIndex = value; }
+        }
+
+        public void setPrevScreen(GameScreen prevScreen)
+        {
+            this.prevScreen = prevScreen;
         }
 
         public PauseScreen(Game game, SpriteBatch spriteBatch, SpriteFont pauseSpriteFont, SpriteFont menuSpriteFont, Texture2D image, Color color, GameScreen prevScreen, GameScreen mainMenuScreen)

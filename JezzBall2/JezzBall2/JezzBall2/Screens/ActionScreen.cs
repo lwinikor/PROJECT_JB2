@@ -23,8 +23,9 @@ namespace JezzBall2.Screens
         protected KeyboardState previousKeyboardState;
         protected int elapsedTime;
         protected HudComponent hud;
+        protected PauseScreen pauseScreen;
 
-        public ActionScreen(Game game, SpriteBatch spriteBatch, Stage stage, List<Player> players, HudComponent hud)
+        public ActionScreen(Game game, SpriteBatch spriteBatch, Stage stage, List<Player> players, HudComponent hud, PauseScreen pauseScreen)
             : base(game, spriteBatch)
         {
             this.stage = stage;
@@ -32,15 +33,42 @@ namespace JezzBall2.Screens
             this.balls = new List<Ball>();
             this.hud = hud;
             this.Components.Add(hud);
+            this.pauseScreen = pauseScreen;
+            this.Components.Add(pauseScreen);
         }
 
         public override void Update(GameTime gameTime)
         {
-            this.stage.update(gameTime);
             this.currentKeyboardState = Keyboard.GetState();
+            this.updatePause(gameTime);
+           
+            if (!this.pauseScreen.Enabled)
+            {
+                this.stage.update(gameTime);
+                this.updatePlayers(gameTime);
+                this.updateBalls(gameTime);
+            }
+            base.Update(gameTime);
+            this.previousKeyboardState = this.currentKeyboardState;
 
-            this.ballGeneration(gameTime);
+        }
 
+        public void updatePause(GameTime gameTime)
+        {
+            if (KeyboardUtility.checkKeyReleased(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState) && this.pauseScreen.Enabled)
+            {
+                this.pauseScreen.hide();
+                this.hud.unpause();
+            }
+            else if (KeyboardUtility.checkKeyReleased(Keys.Enter, this.currentKeyboardState, this.previousKeyboardState) && !this.pauseScreen.Enabled)
+            {
+                this.pauseScreen.show();
+                this.hud.pause();
+            }
+        }
+
+        public void updatePlayers(GameTime gameTime)
+        {
             foreach (Player p in this.players)
             {
                 if (this.currentKeyboardState.IsKeyDown(Keys.Right))
@@ -55,14 +83,15 @@ namespace JezzBall2.Screens
                 this.setPlayerShieldAngle(p);
                 p.update(gameTime);
             }
+        }
+
+        public void updateBalls(GameTime gameTime)
+        {
+            this.ballGeneration(gameTime);
             foreach (Ball b in this.balls)
             {
                 b.update(gameTime);
             }
-
-            base.Update(gameTime);
-
-            this.previousKeyboardState = this.currentKeyboardState;
         }
 
         public void setPlayerShieldAngle(Player p)
@@ -115,6 +144,20 @@ namespace JezzBall2.Screens
             }
 
             base.Draw(gameTime);
+        }
+
+        public override void show()
+        {
+            this.Visible = true;
+            this.Enabled = true;
+            foreach (GameComponent component in this.components)
+            {
+                if (component == this.pauseScreen)
+                    continue;
+                component.Enabled = true;
+                if (component is DrawableGameComponent)
+                    ((DrawableGameComponent)component).Visible = true;
+            }
         }
     }
 }
